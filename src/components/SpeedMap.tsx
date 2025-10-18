@@ -14,14 +14,14 @@ interface StreetData {
 }
 
 const streets: StreetData[] = [
-  { name: "Blvd. Luis Encinas", maxSpeed: 80, roadType: "Bulevar principal", zone: "Centro", estimatedFine: "$1,200 - $3,000" },
-  { name: "Blvd. Solidaridad", maxSpeed: 70, roadType: "Bulevar", zone: "Norte", estimatedFine: "$1,200 - $2,500" },
-  { name: "Av. Cultura", maxSpeed: 60, roadType: "Avenida", zone: "Centro", estimatedFine: "$1,000 - $2,000" },
-  { name: "Blvd. Paseo Río Sonora", maxSpeed: 80, roadType: "Bulevar periférico", zone: "Sur", estimatedFine: "$1,200 - $3,000" },
-  { name: "Calle Morelia", maxSpeed: 40, roadType: "Calle residencial", zone: "Centro", estimatedFine: "$800 - $1,500" },
-  { name: "Av. Rosales", maxSpeed: 50, roadType: "Avenida secundaria", zone: "Centro", estimatedFine: "$900 - $1,800" },
-  { name: "Blvd. Navarrete", maxSpeed: 70, roadType: "Bulevar", zone: "Este", estimatedFine: "$1,200 - $2,500" },
-  { name: "Av. Serna", maxSpeed: 50, roadType: "Avenida", zone: "Norte", estimatedFine: "$900 - $1,800" },
+  { name: "Blvd. Luis Encinas", maxSpeed: 50, roadType: "Bulevar principal", zone: "Centro", estimatedFine: "$1,000 - $2,000" },
+  { name: "Blvd. Solidaridad", maxSpeed: 50, roadType: "Bulevar", zone: "Norte", estimatedFine: "$1,000 - $2,000" },
+  { name: "Av. Cultura", maxSpeed: 30, roadType: "Avenida", zone: "Centro", estimatedFine: "$1,000 - $2,000" },
+  { name: "Blvd. Paseo Río Sonora", maxSpeed: 50, roadType: "Bulevar periférico", zone: "Sur", estimatedFine: "$1,000 - $2,000" },
+  { name: "Calle Morelia", maxSpeed: 30, roadType: "Calle residencial", zone: "Centro", estimatedFine: "$1,000 - $2,000" },
+  { name: "Av. Rosales", maxSpeed: 30, roadType: "Avenida secundaria", zone: "Centro", estimatedFine: "$1,000 - $2,000" },
+  { name: "Carretera", maxSpeed: 110, roadType: "General", zone: "Hermosillo y Afueras", estimatedFine: "$1,000 - $2,000" },
+  { name: "Zonas Escolares", maxSpeed: 20, roadType: "General", zone: "Hermosillo", estimatedFine: "$1,000 - $2,000" },
 ];
 
 const SpeedMap = () => {
@@ -29,8 +29,8 @@ const SpeedMap = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const getSpeedCategory = (speed: number) => {
-    if (speed >= 70) return "alta";
-    if (speed >= 50) return "media";
+    if (speed >= 50) return "alta";
+    if (speed >= 30) return "media";
     return "baja";
   };
 

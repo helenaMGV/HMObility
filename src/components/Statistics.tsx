@@ -15,11 +15,11 @@ const barData = [
 ];
 
 const pieData = [
-  { name: "Exceso de velocidad", value: 35, color: "hsl(32 94% 50%)" },
-  { name: "Uso de celular", value: 25, color: "hsl(43 93% 49%)" },
-  { name: "Semáforo", value: 20, color: "hsl(183 48% 53%)" },
-  { name: "Cinturón", value: 12, color: "hsl(32 70% 60%)" },
-  { name: "Otros", value: 8, color: "hsl(24 25% 60%)" },
+  { name: "Exceso de velocidad", short: "Exceso velocidad", value: 35, color: "hsl(32 94% 50%)" },
+  { name: "Uso de celular", short: "Uso celular", value: 25, color: "hsl(43 93% 49%)" },
+  { name: "Semáforo", short: "Semáforo", value: 20, color: "hsl(183 48% 53%)" },
+  { name: "Cinturón", short: "Cinturón", value: 12, color: "hsl(32 70% 60%)" },
+  { name: "Otros", short: "Otros", value: 8, color: "hsl(24 25% 60%)" },
 ];
 
 const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
@@ -113,10 +113,14 @@ const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
                   <PieChart>
                     <Pie
                       data={pieData}
-                      cx="50%"
+                      cx="40%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      label={({ index, percent }) => {
+                        const entry: any = pieData[index];
+                        const short = entry.short || entry.name;
+                        return `${short}: ${(percent * 100).toFixed(0)}%`;
+                      }}
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="value"
@@ -125,6 +129,11 @@ const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
+                    <Legend layout="vertical" verticalAlign="middle" align="right" formatter={(value: any) => {
+                      // Show short names in legend
+                      const entry = pieData.find((p) => p.name === value || p.short === value);
+                      return entry ? entry.short : value;
+                    }} />
                     <Tooltip 
                       contentStyle={{ 
                         backgroundColor: 'hsl(var(--card))',

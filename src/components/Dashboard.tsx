@@ -17,38 +17,38 @@ const defaultData: Fine[] = [
   {
     infraccion: "Exceso de velocidad",
     descripcion: "Conducir por encima del límite permitido",
-    ley: "Art. 123 LTSV",
-    costo: "$1,200 - $3,000"
+    ley: "Art. 87 LTES",
+    costo: "$1,000 - $2,180"
   },
   {
     infraccion: "No usar cinturón",
     descripcion: "Conducir sin cinturón de seguridad",
-    ley: "Art. 117 LTSV",
-    costo: "$800"
+    ley: "Art. 69 LTES",
+    costo: "$870 - $1,630"
   },
   {
     infraccion: "Uso de celular",
     descripcion: "Usar dispositivos móviles mientras se conduce",
-    ley: "Art. 119 LTSV",
-    costo: "$1,000"
+    ley: "Art. 225 BIS",
+    costo: "$1,100 - $2,100"
   },
   {
-    infraccion: "Estacionamiento prohibido",
-    descripcion: "Estacionar en zona no permitida",
-    ley: "Art. 125 LTSV",
-    costo: "$500 - $800"
+    infraccion: "Circular sin placas",
+    descripcion: "Conducir con vehículo sin placas",
+    ley: "Art. 232 LTES",
+    costo: "$2,100 - $5,400"
   },
   {
     infraccion: "No respetar semáforo",
     descripcion: "Pasar en alto o luz roja",
-    ley: "Art. 121 LTSV",
-    costo: "$1,500"
+    ley: "Art. 235 LTES",
+    costo: "$1,600 - $3,300"
   },
   {
-    infraccion: "Conducir en estado de ebriedad",
-    descripcion: "Conducir bajo influencia del alcohol",
-    ley: "Art. 130 LTSV",
-    costo: "$3,000 - $5,000 + arresto"
+    infraccion: "No portar licencia de conducir",
+    descripcion: "No contar con licencia vigente al conducir o no tenerla a la mano",
+    ley: "Art. 18 LTES",
+    costo: "$1,100 - $2,200"
   }
 ];
 
@@ -67,25 +67,14 @@ const Dashboard = ({ data = defaultData }: DashboardProps) => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8 animate-slide-up">
-            <Card className="border-primary/20 shadow-card hover:shadow-elegant transition-smooth">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium">Total Infracciones</CardTitle>
-                <AlertCircle className="h-4 w-4 text-primary" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-primary">{data.length}</div>
-                <p className="text-xs text-muted-foreground">registradas en el sistema</p>
-              </CardContent>
-            </Card>
-
+          <div className="grid md:grid-cols-2 gap-6 mb-8 animate-slide-up">
             <Card className="border-secondary/20 shadow-card hover:shadow-elegant transition-smooth">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Costo Promedio</CardTitle>
                 <DollarSign className="h-4 w-4 text-secondary" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-secondary">$1,500</div>
+                <div className="text-2xl font-bold text-secondary">$2,100</div>
                 <p className="text-xs text-muted-foreground">por multa de tránsito</p>
               </CardContent>
             </Card>
@@ -96,7 +85,7 @@ const Dashboard = ({ data = defaultData }: DashboardProps) => {
                 <BookOpen className="h-4 w-4 text-accent" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-accent">LTSV</div>
+                <div className="text-2xl font-bold text-accent">LTES</div>
                 <p className="text-xs text-muted-foreground">Sonora vigente</p>
               </CardContent>
             </Card>

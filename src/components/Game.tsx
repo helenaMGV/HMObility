@@ -20,9 +20,9 @@ const scenarios: Scenario[] = [
     id: 1,
     situation: "Estás conduciendo por Blvd. Luis Encinas en hora pico",
     question: "¿Cuál es la velocidad máxima permitida?",
-    options: ["60 km/h", "70 km/h", "80 km/h", "90 km/h"],
+    options: ["60 km/h", "50 km/h", "80 km/h", "90 km/h"],
     correctAnswer: 2,
-    explanation: "En bulevares principales como Luis Encinas, el límite es 80 km/h. Respetar este límite reduce accidentes.",
+    explanation: "En bulevares principales como Luis Encinas, el límite es 50 km/h. Respetar este límite reduce accidentes.",
     points: 10,
   },
   {
@@ -36,7 +36,7 @@ const scenarios: Scenario[] = [
       "Enviar un mensaje de texto"
     ],
     correctAnswer: 2,
-    explanation: "Usar el celular mientras conduces está prohibido y puede costarte $1,000 de multa. Lo correcto es orillarte de forma segura.",
+    explanation: "Usar el celular mientras conduces está prohibido y puede costarte $1,100 - $2,200 de multa. Lo correcto es orillarte de forma segura.",
     points: 15,
   },
   {
@@ -50,7 +50,7 @@ const scenarios: Scenario[] = [
       "Mantener la misma velocidad"
     ],
     correctAnswer: 1,
-    explanation: "La luz amarilla indica prepararse para detenerse. Pasar en rojo puede costarte $1,500 de multa.",
+    explanation: "La luz amarilla indica prepararse para detenerse. Pasar en rojo puede costarte $1,100 - $2,000 de multa.",
     points: 10,
   },
   {
@@ -64,7 +64,7 @@ const scenarios: Scenario[] = [
       "Todos los ocupantes"
     ],
     correctAnswer: 3,
-    explanation: "Todos los ocupantes deben usar cinturón. No hacerlo resulta en multa de $800 y pone en riesgo vidas.",
+    explanation: "Todos los ocupantes deben usar cinturón. No hacerlo resulta en multa de $860 - $1,600 y pone en riesgo vidas.",
     points: 10,
   },
   {
@@ -78,7 +78,7 @@ const scenarios: Scenario[] = [
       "Después de 1 hora"
     ],
     correctAnswer: 2,
-    explanation: "Conducir bajo influencia del alcohol es gravísimo: $3,000-$5,000 de multa más posible arresto. ¡Nunca manejes ebrio!",
+    explanation: "Conducir bajo influencia del alcohol es gravísimo: $9,600 - $14,500 de multa más posible decomisación de tu carro y arresto. ¡Nunca manejes ebrio!",
     points: 20,
   },
 ];
