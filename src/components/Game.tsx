@@ -20,7 +20,7 @@ const scenarios: Scenario[] = [
     id: 1,
     situation: "Estás conduciendo por Blvd. Luis Encinas en hora pico",
     question: "¿Cuál es la velocidad máxima permitida?",
-    options: ["60 km/h", "50 km/h", "80 km/h", "90 km/h"],
+    options: ["60 km/h", "80 km/h", "50 km/h", "90 km/h"],
     correctAnswer: 2,
     explanation: "En bulevares principales como Luis Encinas, el límite es 50 km/h. Respetar este límite reduce accidentes.",
     points: 10,
