@@ -14,6 +14,7 @@ const Navbar = ({ onChatbotToggle }: NavbarProps) => {
 
   const menuItems = [
     { label: "Inicio", path: "/" },
+    { label: "Mapa", path: "/mapa" },
     { label: "Juego Educativo", path: "/juego" },
     { label: "Acerca de", path: "/acerca-de" },
   ];
