@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+backend/venv/
+backend/__pycache__/
+
+# Backend ya no se usa - migramos a api/ serverless
+backend/main.py
+backend/requirements.txt
+
+# Development files
+*.har
+chats.md
+estructura.md
+integration-guide.md
+AUDIT_REPORT.md
+CONTRIBUTING.md
+GUAPEADA_VISUAL.md
+MEJORAS_IMPLEMENTADAS.md
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backend (deployed separately)
+backend/
+
+# Development data
+datajson/
+!public/datajson/
+
+# Build artifacts
+dist/
+*.log
+npm-debug.log*

@@ -2,9 +2,11 @@
   "id_evento": "HMO_20251110_001",
   "tipo_accidente": "choque_contra_barda",
   "medio_reporta": "Periódico Expreso",
-  "fecha_accidente": "2025‑11‑10",
-  "fecha_reporte": "2025‑11‑10",
+  "fecha_accidente": "2025-11-10",
+  "hora_incidente": "false",
   "hora_reporte": "17:49",
+  "momento_accidente": "tarde",
+  "fecha_reporte": "2025-11-10",
   "ubicacion": {
     "direccion_completa": "Calle Ing. Mario Yeomans Martínez, a una cuadra del bulevar López Riesgo",
     "ubicacion_exacta": "colonia Altares, Hermosillo, Sonora",
@@ -49,5 +51,5 @@
   "mapa_zona_riesgo": false,
   "tags": ["choque", "Hermosillo", "Altares", "accidente", "barda", "sedan"],
   "creado_por": "dataset_autogen_expresso_scraper",
-  "fecha_ingreso_bd": "2025‑11‑12T17:00:00‑07:00"
+  "fecha_ingreso_bd": "2025-11-12T17:00:00-07:00"
 }

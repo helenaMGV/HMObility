@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
-import Chatbot from "@/components/Chatbot";
+import ChatbotReglamento from "@/components/ChatbotReglamento";
 import Footer from "@/components/Footer";
 
 const AboutPage = () => {
@@ -14,7 +14,7 @@ const AboutPage = () => {
         <About />
       </main>
       <Footer />
-      <Chatbot isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
+      <ChatbotReglamento isOpen={isChatbotOpen} onClose={() => setIsChatbotOpen(false)} />
     </div>
   );
 };

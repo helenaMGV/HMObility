@@ -39,12 +39,22 @@ const About = () => {
           <div className="relative rounded-2xl overflow-hidden mb-16 shadow-elegant">
             <img
               src={backgroundImage}
-              alt="Hermosillo"
+              alt="Hermosillo ciudad vista panorámica"
               className="w-full h-80 object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 gradient-hero flex items-center justify-center">
               <div className="text-center">
-                <img src={logoSrc} alt="HMObility" className="h-20 mx-auto mb-6 drop-shadow-lg" />
+                <img 
+                  src={logoSrc} 
+                  alt="Logo HMObility Hermosillo" 
+                  className="h-20 mx-auto mb-6 drop-shadow-lg"
+                  loading="lazy"
+                  decoding="async"
+                  width="80"
+                  height="80"
+                />
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
                   Acerca de HMObility
                 </h1>

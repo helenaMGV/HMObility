@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
+# HMObility Safe Streets 🚦
 
-## Project info
+> Plataforma web para la visualización de accidentes viales y consulta del Reglamento de Tránsito de Hermosillo, Sonora.
 
-**URL**: https://lovable.dev/projects/e1eecd9b-7f44-4332-9fc8-247a144d3388
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![License](https://img.shields.io/badge/license-MIT-blue)]()
+[![React](https://img.shields.io/badge/React-18.3.1-61dafb?logo=react)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6?logo=typescript)]()
 
-## How can I edit this code?
+## 🌟 Características
 
-There are several ways of editing your application.
+- 🗺️ **Mapa Interactivo**: Visualización de accidentes viales en Hermosillo con datos georreferenciados
+- 🤖 **Chatbot Inteligente**: Consulta el Reglamento de Tránsito 2025 con búsqueda avanzada
+- 📊 **Dashboard de Estadísticas**: Análisis de datos de accidentes por tipo, zona y fecha
+- 🎮 **Juego Educativo**: Aprende sobre seguridad vial de forma interactiva
+- 📱 **Diseño Responsivo**: Optimizado para móviles, tablets y escritorio
+- ♿ **Accesible**: Cumple con estándares WCAG 2.1 AA
 
-**Use Lovable**
+## 🚀 Inicio Rápido
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e1eecd9b-7f44-4332-9fc8-247a144d3388) and start prompting.
+### Prerrequisitos
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js 18+ y npm
+- Python 3.10+ (para el backend del chatbot)
 
-**Use your preferred IDE**
+### Instalación
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/helenaMGV/hmobility-safe-streets.git
+cd hmobility-safe-streets
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# 2. Instalar dependencias del frontend
+npm install
 
-Follow these steps:
+# 3. Configurar variables de entorno
+cp .env.example .env.local
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 4. Configurar backend del chatbot (opcional)
+cd backend
+python3.12 -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cd ..
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 5. Iniciar desarrollo
 npm run dev
+
+# 6. (Opcional) En otra terminal, iniciar backend
+cd backend && source venv/bin/activate && uvicorn main:app --reload --port 8000
 ```
 
-**Edit a file directly in GitHub**
+Visita **http://localhost:8080**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🛠️ Tecnologías
 
-**Use GitHub Codespaces**
+- **React 18.3** + **TypeScript 5.8** - Framework UI con type safety
+- **Vite 5.4** - Build tool ultrarrápido
+- **Tailwind CSS 3.4** + **shadcn/ui** - Sistema de diseño moderno
+- **React Router 6** - Navegación SPA
+- **Leaflet** - Mapas interactivos
+- **Recharts** - Visualizaciones de datos
+- **FastAPI** - Backend Python para chatbot
+- **TanStack Query** - Gestión de estado asíncrono
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📊 Funcionalidades Principales
 
-## What technologies are used for this project?
+### 🗺️ Mapa de Accidentes
+- Visualización georreferenciada de 800+ accidentes
+- Filtros por fecha, tipo y gravedad
+- Heatmap de zonas de riesgo
+- Estadísticas en tiempo real
 
-This project is built with:
+### 🤖 Chatbot del Reglamento
+- 296 artículos del Reglamento de Tránsito 2025
+- Búsqueda inteligente por palabras clave
+- Modo backend + fallback local
+- Respuestas con fundamento legal
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 📈 Dashboard de Estadísticas
+- Gráficas interactivas con Recharts
+- Análisis temporal y geográfico
+- Comparativas por tipo de accidente
+- Exportación de datos
 
-## How can I deploy this project?
+## 🚀 Despliegue
 
-Simply open [Lovable](https://lovable.dev/projects/e1eecd9b-7f44-4332-9fc8-247a144d3388) and click on Share -> Publish.
+### Vercel (Recomendado)
+```bash
+vercel --prod
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Build Manual
+```bash
+npm run build
+# Archivos en dist/
+```
 
-Yes, you can!
+Ver documentación completa en [CONTRIBUTING.md](CONTRIBUTING.md)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📚 Documentación
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- [Audit Report](AUDIT_REPORT.md) - Reporte completo de auditoría y mejoras
+- [Contributing Guide](CONTRIBUTING.md) - Guía para contribuir
+- [Backend README](backend/README.md) - Documentación del API
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Lee nuestra [guía de contribución](CONTRIBUTING.md).
+
+## 📄 Licencia
+
+MIT License
+
+## 🙏 Créditos
+
+Desarrollado para mejorar la seguridad vial en Hermosillo, Sonora.
+
+---
+
+**Nota**: Proyecto educativo/informativo. Los datos pueden no reflejar la situación completa.

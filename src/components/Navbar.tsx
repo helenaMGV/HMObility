@@ -22,27 +22,30 @@ const Navbar = ({ onChatbotToggle }: NavbarProps) => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-card">
-      <div className="container mx-auto px-4 py-4">
+    <nav className="sticky top-0 z-50 bg-background/98 backdrop-blur-xl border-b-2 border-primary/10 shadow-lg">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 transition-smooth hover:opacity-80">
-            <img src={logoSrc} alt="HMObility" className="h-10 w-auto" />
+          {/* Logo con efecto hover mejorado */}
+          <Link to="/" className="flex items-center gap-3 transition-all duration-300 hover:scale-105 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <img src={logoSrc} alt="HMObility" className="h-12 w-auto relative z-10" />
+            </div>
           </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu con efectos premium */}
           <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-smooth relative group ${
+                className={`text-sm font-semibold transition-all duration-300 relative group ${
                   isActive(item.path) ? "text-primary" : "text-foreground hover:text-primary"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-smooth ${
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-300 ${
                     isActive(item.path) ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -50,14 +53,15 @@ const Navbar = ({ onChatbotToggle }: NavbarProps) => {
             ))}
           </div>
 
-          {/* Chatbot Button */}
+          {/* Chatbot Button con diseño premium */}
           <div className="hidden md:flex items-center gap-4">
             <Button
               onClick={onChatbotToggle}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-elegant"
+              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-2 rounded-xl relative overflow-hidden group"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Chatbot
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <MessageCircle className="w-4 h-4 mr-2 relative z-10" />
+              <span className="relative z-10">Asistente</span>
             </Button>
           </div>
 

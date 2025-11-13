@@ -37,6 +37,45 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
+// Custom marker icons based on accident severity
+const createCustomIcon = (severity: string) => {
+  const colors: Record<string, string> = {
+    grave: '#dc2626',      // red-600
+    moderado: '#f59e0b',   // amber-500
+    leve: '#10b981',       // green-500
+  };
+
+  const color = colors[severity] || '#6b7280'; // gray-500 as fallback
+
+  return L.divIcon({
+    className: 'custom-marker',
+    html: `
+      <div style="
+        background-color: ${color};
+        width: 28px;
+        height: 28px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        border: 3px solid white;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+        <div style="
+          color: white;
+          font-size: 16px;
+          transform: rotate(45deg);
+          font-weight: bold;
+        ">!</div>
+      </div>
+    `,
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28],
+  });
+};
+
 interface AccidentData {
   id_evento: string;
   tipo_accidente: string;
@@ -128,24 +167,41 @@ const AccidentsMap = () => {
   };
 
   useEffect(() => {
-    // Load accident data from JSON file
-    fetch("/datajson/HMO_20251110_001.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Loaded accident data:", data);
-        // Wrap single object in array for consistency
-        setAccidents([data]);
-      })
-      .catch((err) => {
+    // Load all accident data from JSON files in datajson folder
+    const loadAccidents = async () => {
+      try {
+        const jsonFiles = [
+          "/datajson/HMO_20251110_001.json",
+          "/datajson/HMO_20251110_002.json"
+        ];
+
+        const promises = jsonFiles.map(file => 
+          fetch(file)
+            .then(res => {
+              if (!res.ok) {
+                console.warn(`Could not load ${file}: ${res.status}`);
+                return null;
+              }
+              return res.json();
+            })
+            .catch(err => {
+              console.warn(`Error loading ${file}:`, err);
+              return null;
+            })
+        );
+
+        const results = await Promise.all(promises);
+        const validAccidents = results.filter(data => data !== null);
+        
+        console.log(`Loaded ${validAccidents.length} accident records from datajson folder`);
+        setAccidents(validAccidents);
+      } catch (err) {
         console.error("Error loading accident data:", err);
-        // Set empty array on error to prevent crashes
         setAccidents([]);
-      });
+      }
+    };
+
+    loadAccidents();
   }, []);
 
   const filteredAccidents = accidents.filter((accident) => {
@@ -400,7 +456,31 @@ const AccidentsMap = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[700px] rounded-lg overflow-hidden border border-border shadow-sm">
+              <div className="h-[700px] rounded-lg overflow-hidden border border-border shadow-sm relative">
+                {/* Map Legend */}
+                <div className="absolute top-4 right-4 z-[1000] bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-3 rounded-lg shadow-lg border border-border">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                    Nivel de Gravedad
+                  </p>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-full bg-red-600 border-2 border-white shadow-sm"></div>
+                      <span className="text-xs">Grave</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm"></div>
+                      <span className="text-xs">Moderado</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-full bg-green-500 border-2 border-white shadow-sm"></div>
+                      <span className="text-xs">Leve</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground mt-2 pt-2 border-t border-border">
+                    {filteredAccidents.length} {filteredAccidents.length === 1 ? 'evento' : 'eventos'} en el mapa
+                  </p>
+                </div>
+
                 <MapContainer
                   center={mapCenter}
                   zoom={13}
@@ -415,6 +495,7 @@ const AccidentsMap = () => {
                     <Marker
                       key={accident.id_evento}
                       position={[accident.ubicacion.coordenadas.lat, accident.ubicacion.coordenadas.lon]}
+                      icon={createCustomIcon(accident.clasificacion_evento.nivel_gravedad)}
                       eventHandlers={{
                         click: () => handleMarkerClick(accident),
                       }}
