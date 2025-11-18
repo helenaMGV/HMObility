@@ -1,6 +1,9 @@
-import { TrendingUp, Users, AlertTriangle } from "lucide-react";
+import { useState } from "react";
+import { TrendingUp, Users, AlertTriangle, TrendingDown, Calendar, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, Line, LineChart } from "recharts";
 
 interface StatisticsProps {
   chartType?: "bar" | "doughnut";
@@ -22,7 +25,21 @@ const pieData = [
   { name: "Otros", short: "Otros", value: 8, color: "hsl(24 25% 60%)" },
 ];
 
+const trendData = [
+  { mes: "Ago", infracciones: 1200, multas: 890 },
+  { mes: "Sep", infracciones: 1350, multas: 920 },
+  { mes: "Oct", infracciones: 1440, multas: 892 },
+  { mes: "Nov", infracciones: 1380, multas: 850 },
+];
+
 const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
+  const [selectedPeriod, setSelectedPeriod] = useState("mes");
+  
+  // Calculate trend
+  const currentMonth = 1440;
+  const previousMonth = 1350;
+  const percentChange = ((currentMonth - previousMonth) / previousMonth * 100).toFixed(1);
+  const isIncreasing = parseFloat(percentChange) > 0;
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -38,13 +55,30 @@ const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
 
           {/* Key Metrics */}
           <div className="grid md:grid-cols-3 gap-6 mb-12 animate-slide-up">
-            <Card className="shadow-card hover:shadow-elegant transition-smooth border-l-4 border-l-primary">
+            <Card className="shadow-card hover:shadow-elegant transition-smooth border-l-4 border-l-primary group cursor-pointer">
               <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardDescription>Infracciones Mensuales</CardDescription>
-                  <CardTitle className="text-3xl font-bold text-primary">1,440</CardTitle>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <CardDescription>Infracciones Mensuales</CardDescription>
+                    {isIncreasing ? (
+                      <Badge variant="destructive" className="text-xs flex items-center gap-1">
+                        <ArrowUpRight className="w-3 h-3" />
+                        +{percentChange}%
+                      </Badge>
+                    ) : (
+                      <Badge variant="default" className="text-xs flex items-center gap-1 bg-green-500">
+                        <ArrowDownRight className="w-3 h-3" />
+                        {percentChange}%
+                      </Badge>
+                    )}
+                  </div>
+                  <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary/80 transition-colors">1,440</CardTitle>
                 </div>
-                <TrendingUp className="h-8 w-8 text-primary" />
+                {isIncreasing ? (
+                  <TrendingUp className="h-8 w-8 text-primary" />
+                ) : (
+                  <TrendingDown className="h-8 w-8 text-green-500" />
+                )}
               </CardHeader>
             </Card>
 
@@ -69,6 +103,58 @@ const Statistics = ({ chartType = "bar" }: StatisticsProps) => {
             </Card>
           </div>
 
+          {/* Time Period Selector */}
+          <Tabs defaultValue="mes" className="mb-8" onValueChange={setSelectedPeriod}>
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
+              <TabsTrigger value="semana">Semanal</TabsTrigger>
+              <TabsTrigger value="mes">Mensual</TabsTrigger>
+              <TabsTrigger value="ano">Anual</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          
+          {/* Trend Chart */}
+          <Card className="shadow-elegant mb-8 animate-fade-in">
+            <CardHeader>
+              <CardTitle>Tendencia de Infracciones</CardTitle>
+              <CardDescription>Comparación de los últimos meses</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={250}>
+                <LineChart data={trendData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="mes" tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+                  <YAxis tick={{ fill: 'hsl(var(--muted-foreground))' }} />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
+                    }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="infracciones" 
+                    stroke="hsl(32 94% 50%)" 
+                    strokeWidth={3}
+                    dot={{ fill: 'hsl(32 94% 50%)', r: 5 }}
+                    activeDot={{ r: 7 }}
+                    name="Infracciones"
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="multas" 
+                    stroke="hsl(43 93% 49%)" 
+                    strokeWidth={3}
+                    dot={{ fill: 'hsl(43 93% 49%)', r: 5 }}
+                    activeDot={{ r: 7 }}
+                    name="Multas aplicadas"
+                  />
+                  <Legend />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+          
           {/* Charts */}
           <div className="grid md:grid-cols-2 gap-8 animate-scale-in">
             {/* Bar Chart */}

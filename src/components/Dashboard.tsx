@@ -1,6 +1,10 @@
-import { AlertCircle, BookOpen, DollarSign } from "lucide-react";
+import { AlertCircle, BookOpen, DollarSign, Download, Search } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import { useState } from "react";
 
 interface Fine {
   infraccion: string;
@@ -53,6 +57,29 @@ const defaultData: Fine[] = [
 ];
 
 const Dashboard = ({ data = defaultData }: DashboardProps) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const filteredData = data.filter(fine => 
+    fine.infraccion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    fine.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
+  const exportToCSV = () => {
+    const headers = "Infracción,Descripción,Fundamento Legal,Costo\n";
+    const rows = data.map(fine => 
+      `"${fine.infraccion}","${fine.descripcion}","${fine.ley}","${fine.costo}"`
+    ).join("\n");
+    
+    const csv = headers + rows;
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `multas_hermosillo_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    
+    toast.success("¡Datos exportados exitosamente!");
+  };
+  
   return (
     <section id="tabla-multas" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -94,10 +121,33 @@ const Dashboard = ({ data = defaultData }: DashboardProps) => {
           {/* Table */}
           <Card className="shadow-elegant animate-scale-in">
             <CardHeader>
-              <CardTitle>Infracciones Registradas</CardTitle>
-              <CardDescription>
-                Información detallada sobre multas y sus fundamentos legales
-              </CardDescription>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <CardTitle>Infracciones Registradas</CardTitle>
+                  <CardDescription>
+                    Información detallada sobre multas y sus fundamentos legales
+                  </CardDescription>
+                </div>
+                <div className="flex gap-2">
+                  <div className="relative flex-1 md:w-64">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Buscar infracción..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-9"
+                    />
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={exportToCSV}
+                    title="Exportar a CSV"
+                  >
+                    <Download className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
             </CardHeader>
             <CardContent className="overflow-x-auto">
               <Table>
@@ -110,25 +160,33 @@ const Dashboard = ({ data = defaultData }: DashboardProps) => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.map((fine, index) => (
-                    <TableRow 
-                      key={index} 
-                      className="hover:bg-muted/50 transition-smooth"
-                    >
-                      <TableCell className="font-medium text-primary">
-                        {fine.infraccion}
-                      </TableCell>
-                      <TableCell className="text-sm">
-                        {fine.descripcion}
-                      </TableCell>
-                      <TableCell className="text-sm font-mono text-muted-foreground">
-                        {fine.ley}
-                      </TableCell>
-                      <TableCell className="text-right font-bold text-secondary">
-                        {fine.costo}
+                  {filteredData.length > 0 ? (
+                    filteredData.map((fine, index) => (
+                      <TableRow 
+                        key={index} 
+                        className="hover:bg-muted/50 transition-smooth cursor-pointer group"
+                      >
+                        <TableCell className="font-medium text-primary group-hover:text-primary/80 transition-colors">
+                          {fine.infraccion}
+                        </TableCell>
+                        <TableCell className="text-sm">
+                          {fine.descripcion}
+                        </TableCell>
+                        <TableCell className="text-sm font-mono text-muted-foreground">
+                          {fine.ley}
+                        </TableCell>
+                        <TableCell className="text-right font-bold text-secondary">
+                          {fine.costo}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
+                        No se encontraron infracciones que coincidan con "{searchTerm}"
                       </TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
               </Table>
             </CardContent>
