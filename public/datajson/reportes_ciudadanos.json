@@ -1,0 +1,113 @@
+{
+  "reportes": [
+    {
+      "id": "RPT_001",
+      "tipo": "bache",
+      "titulo": "Bache profundo en Blvd. Luis Encinas",
+      "descripcion": "Bache de aproximadamente 30cm de profundidad que representa peligro para motociclistas",
+      "ubicacion": {
+        "direccion": "Blvd. Luis Encinas y Colosio",
+        "colonia": "Villa de Seris",
+        "lat": 29.0892,
+        "lon": -110.9617
+      },
+      "estatus": "pendiente",
+      "prioridad": "alta",
+      "fecha_reporte": "2025-11-15T10:30:00",
+      "reportado_por": "Juan Pérez",
+      "votos": 24,
+      "foto_url": null
+    },
+    {
+      "id": "RPT_002",
+      "tipo": "semaforo_dañado",
+      "titulo": "Semáforo sin funcionar",
+      "descripcion": "El semáforo no enciende desde hace 3 días, causando confusión en el cruce",
+      "ubicacion": {
+        "direccion": "Blvd. Morelos y Reforma",
+        "colonia": "Centro",
+        "lat": 29.0729,
+        "lon": -110.9559
+      },
+      "estatus": "en_revision",
+      "prioridad": "critica",
+      "fecha_reporte": "2025-11-14T08:15:00",
+      "reportado_por": "María González",
+      "votos": 42,
+      "foto_url": null
+    },
+    {
+      "id": "RPT_003",
+      "tipo": "señal_oculta",
+      "titulo": "Señal de alto cubierta por árbol",
+      "descripcion": "Las ramas de un árbol cubren completamente la señal de alto",
+      "ubicacion": {
+        "direccion": "Calle Juárez y Hidalgo",
+        "colonia": "San Benito",
+        "lat": 29.0892,
+        "lon": -110.9883
+      },
+      "estatus": "resuelto",
+      "prioridad": "media",
+      "fecha_reporte": "2025-11-10T14:20:00",
+      "fecha_resolucion": "2025-11-13T09:00:00",
+      "reportado_por": "Carlos Ramírez",
+      "votos": 15,
+      "foto_url": null
+    },
+    {
+      "id": "RPT_004",
+      "tipo": "falta_paso_peatonal",
+      "titulo": "Necesario paso peatonal frente a escuela",
+      "descripcion": "Escuela primaria sin paso peatonal seguro, niños cruzan en zona peligrosa",
+      "ubicacion": {
+        "direccion": "Blvd. Solidaridad",
+        "colonia": "Pimentel",
+        "lat": 29.1072,
+        "lon": -110.9773
+      },
+      "estatus": "pendiente",
+      "prioridad": "alta",
+      "fecha_reporte": "2025-11-12T07:45:00",
+      "reportado_por": "Ana Torres",
+      "votos": 67,
+      "foto_url": null
+    },
+    {
+      "id": "RPT_005",
+      "tipo": "iluminacion",
+      "titulo": "Falta iluminación en cruce peligroso",
+      "descripcion": "Cruce sin iluminación, varios accidentes nocturnos reportados",
+      "ubicacion": {
+        "direccion": "Periférico Norte y Tamaulipas",
+        "colonia": "Lomas del Pitic",
+        "lat": 29.1192,
+        "lon": -110.9912
+      },
+      "estatus": "en_revision",
+      "prioridad": "alta",
+      "fecha_reporte": "2025-11-11T19:30:00",
+      "reportado_por": "Roberto Sánchez",
+      "votos": 38,
+      "foto_url": null
+    },
+    {
+      "id": "RPT_006",
+      "tipo": "banqueta_dañada",
+      "titulo": "Banqueta rota dificulta paso de silla de ruedas",
+      "descripcion": "Banqueta hundida y agrietada impide paso accesible",
+      "ubicacion": {
+        "direccion": "Calle Nayarit y Guerrero",
+        "colonia": "Modelo",
+        "lat": 29.0792,
+        "lon": -110.9659
+      },
+      "estatus": "pendiente",
+      "prioridad": "media",
+      "fecha_reporte": "2025-11-13T11:00:00",
+      "reportado_por": "Laura Martínez",
+      "votos": 19,
+      "foto_url": null
+    }
+  ]
+}

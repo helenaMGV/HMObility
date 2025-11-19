@@ -154,7 +154,7 @@ const LiveNotifications = () => {
               <Bell className="w-5 h-5" />
               <h3 className="font-bold">Notificaciones en Vivo</h3>
               {unreadCount > 0 && (
-                <Badge variant="secondary">{unreadCount} nuevas</Badge>
+                <Badge variant="default" className="bg-orange-600 text-white font-semibold">{unreadCount} nuevas</Badge>
               )}
             </div>
             <div className="flex items-center gap-2">

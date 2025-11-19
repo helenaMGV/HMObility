@@ -1,0 +1,112 @@
+[
+  {
+    "id": "art_70",
+    "articulo": "Artículo 70",
+    "tema": "alcohol",
+    "descripcion_corta": "Conducir bajo influencia de alcohol o drogas",
+    "severidad": "alta",
+    "infracciones_registradas": 342,
+    "accidentes_asociados": 127,
+    "multa_base": 2500,
+    "puntos_licencia": 8
+  },
+  {
+    "id": "art_45",
+    "articulo": "Artículo 45",
+    "tema": "velocidad",
+    "descripcion_corta": "Exceso de velocidad en zona urbana",
+    "severidad": "alta",
+    "infracciones_registradas": 289,
+    "accidentes_asociados": 98,
+    "multa_base": 1200,
+    "puntos_licencia": 6
+  },
+  {
+    "id": "art_112",
+    "articulo": "Artículo 112",
+    "tema": "celular",
+    "descripcion_corta": "Uso de teléfono celular al conducir",
+    "severidad": "media",
+    "infracciones_registradas": 412,
+    "accidentes_asociados": 76,
+    "multa_base": 800,
+    "puntos_licencia": 4
+  },
+  {
+    "id": "art_58",
+    "articulo": "Artículo 58",
+    "tema": "cinturon",
+    "descripcion_corta": "No usar cinturón de seguridad",
+    "severidad": "media",
+    "infracciones_registradas": 523,
+    "accidentes_asociados": 45,
+    "multa_base": 600,
+    "puntos_licencia": 3
+  },
+  {
+    "id": "art_92",
+    "articulo": "Artículo 92",
+    "tema": "peaton",
+    "descripcion_corta": "No ceder el paso a peatones en paso peatonal",
+    "severidad": "alta",
+    "infracciones_registradas": 267,
+    "accidentes_asociados": 89,
+    "multa_base": 1000,
+    "puntos_licencia": 5
+  },
+  {
+    "id": "art_134",
+    "articulo": "Artículo 134",
+    "tema": "ciclovia",
+    "descripcion_corta": "Circular en ciclovía sin ser vehículo no motorizado",
+    "severidad": "media",
+    "infracciones_registradas": 178,
+    "accidentes_asociados": 32,
+    "multa_base": 700,
+    "puntos_licencia": 4
+  },
+  {
+    "id": "art_48",
+    "articulo": "Artículo 48",
+    "tema": "semaforo",
+    "descripcion_corta": "No respetar señal de alto o semáforo en rojo",
+    "severidad": "alta",
+    "infracciones_registradas": 356,
+    "accidentes_asociados": 112,
+    "multa_base": 1500,
+    "puntos_licencia": 7
+  },
+  {
+    "id": "art_125",
+    "articulo": "Artículo 125",
+    "tema": "estacionamiento",
+    "descripcion_corta": "Estacionarse en lugar prohibido o para discapacitados",
+    "severidad": "baja",
+    "infracciones_registradas": 634,
+    "accidentes_asociados": 12,
+    "multa_base": 400,
+    "puntos_licencia": 2
+  },
+  {
+    "id": "art_89",
+    "articulo": "Artículo 89",
+    "tema": "distancia",
+    "descripcion_corta": "No mantener distancia de seguimiento segura",
+    "severidad": "media",
+    "infracciones_registradas": 198,
+    "accidentes_asociados": 67,
+    "multa_base": 900,
+    "puntos_licencia": 4
+  },
+  {
+    "id": "art_103",
+    "articulo": "Artículo 103",
+    "tema": "menores",
+    "descripcion_corta": "Transportar menores sin sistema de retención infantil",
+    "severidad": "alta",
+    "infracciones_registradas": 245,
+    "accidentes_asociados": 34,
+    "multa_base": 1100,
+    "puntos_licencia": 6
+  }
+]

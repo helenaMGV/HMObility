@@ -118,6 +118,26 @@
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
   }
+
+  /* Mejorar estilos de popups de Leaflet */
+  .leaflet-popup-content-wrapper {
+    border-radius: 0.5rem !important;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+  }
+  
+  .leaflet-popup-content {
+    margin: 0 !important;
+    min-width: 180px !important;
+  }
+  
+  .leaflet-popup-close-button {
+    font-size: 18px !important;
+    padding: 4px 8px !important;
+  }
+  
+  .compact-popup .leaflet-popup-content-wrapper {
+    padding: 0 !important;
+  }
   
   .shadow-card {
     box-shadow: var(--shadow-card);
@@ -134,7 +154,7 @@
     background-clip: text;
   }
   
-  /* Nuevas animaciones premium */
+  /* Premium animations */
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
@@ -149,6 +169,19 @@
   
   .animate-float-delayed {
     animation: float 8s ease-in-out infinite 2s;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
   }
 
   @keyframes subtleZoom {
@@ -173,6 +206,44 @@
     75% {
       transform: translateY(20px) translateX(10px);
     }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Background grid pattern */
+  .bg-grid-pattern {
+    background-image: linear-gradient(hsl(32 25% 88%) 1px, transparent 1px),
+                      linear-gradient(90deg, hsl(32 25% 88%) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
   
   /* Smooth scroll behavior */

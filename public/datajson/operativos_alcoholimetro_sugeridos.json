@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "nombre": "Operativo Bulevar Luis Encinas",
+    "coordenadas": [29.0892, -110.9613],
+    "colonia": "Centro",
+    "horario_sugerido": "22:00 - 02:00",
+    "dias_semana": ["viernes", "sábado"],
+    "prioridad": "alta",
+    "siniestros_nocturnos_6m": 12,
+    "descripcion": "Zona de alta concentración de bares y restaurantes"
+  },
+  {
+    "id": 2,
+    "nombre": "Operativo Blvd. Solidaridad x Periférico",
+    "coordenadas": [29.1234, -111.0234],
+    "colonia": "Villa Sonora",
+    "horario_sugerido": "23:00 - 03:00",
+    "dias_semana": ["viernes", "sábado", "domingo"],
+    "prioridad": "muy alta",
+    "siniestros_nocturnos_6m": 18,
+    "descripcion": "Cruce con alta velocidad y tráfico nocturno"
+  },
+  {
+    "id": 3,
+    "nombre": "Operativo Blvd. Navarrete",
+    "coordenadas": [29.0567, -110.9876],
+    "colonia": "Pitic",
+    "horario_sugerido": "21:00 - 01:00",
+    "dias_semana": ["jueves", "viernes", "sábado"],
+    "prioridad": "alta",
+    "siniestros_nocturnos_6m": 9,
+    "descripcion": "Corredor con antros y bares"
+  },
+  {
+    "id": 4,
+    "nombre": "Operativo Av. Universidad",
+    "coordenadas": [29.0789, -110.9543],
+    "colonia": "San Benito",
+    "horario_sugerido": "20:00 - 00:00",
+    "dias_semana": ["jueves", "viernes"],
+    "prioridad": "media",
+    "siniestros_nocturnos_6m": 7,
+    "descripcion": "Zona universitaria con vida nocturna"
+  },
+  {
+    "id": 5,
+    "nombre": "Operativo Periférico Oriente",
+    "coordenadas": [29.0987, -110.9234],
+    "colonia": "Recursos Hidráulicos",
+    "horario_sugerido": "23:00 - 03:00",
+    "dias_semana": ["sábado", "domingo"],
+    "prioridad": "muy alta",
+    "siniestros_nocturnos_6m": 15,
+    "descripcion": "Velocidad alta en carretera urbana"
+  }
+]

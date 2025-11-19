@@ -1,0 +1,66 @@
+[
+  {
+    "id": "veh_1",
+    "tipo": "camion",
+    "ruta_id": "ruta_1",
+    "velocidad_kmh": 25,
+    "offset_inicial": 0.0,
+    "nombre": "Camión 1 Norte"
+  },
+  {
+    "id": "veh_2",
+    "tipo": "camion",
+    "ruta_id": "ruta_2",
+    "velocidad_kmh": 22,
+    "offset_inicial": 0.3,
+    "nombre": "Camión 2 Sur"
+  },
+  {
+    "id": "veh_3",
+    "tipo": "camion",
+    "ruta_id": "ruta_3",
+    "velocidad_kmh": 28,
+    "offset_inicial": 0.15,
+    "nombre": "Camión 3 Este-Oeste"
+  },
+  {
+    "id": "veh_4",
+    "tipo": "auto",
+    "ruta_id": "ruta_4",
+    "velocidad_kmh": 45,
+    "offset_inicial": 0.0,
+    "nombre": "Auto Periférico"
+  },
+  {
+    "id": "veh_5",
+    "tipo": "bicicleta",
+    "ruta_id": "ruta_5",
+    "velocidad_kmh": 15,
+    "offset_inicial": 0.5,
+    "nombre": "Ciclista Centro"
+  },
+  {
+    "id": "veh_6",
+    "tipo": "camion",
+    "ruta_id": "ruta_1",
+    "velocidad_kmh": 24,
+    "offset_inicial": 0.6,
+    "nombre": "Camión 1B Norte"
+  },
+  {
+    "id": "veh_7",
+    "tipo": "camion",
+    "ruta_id": "ruta_2",
+    "velocidad_kmh": 23,
+    "offset_inicial": 0.8,
+    "nombre": "Camión 2B Sur"
+  },
+  {
+    "id": "veh_8",
+    "tipo": "auto",
+    "ruta_id": "ruta_4",
+    "velocidad_kmh": 48,
+    "offset_inicial": 0.5,
+    "nombre": "Auto Express"
+  }
+]

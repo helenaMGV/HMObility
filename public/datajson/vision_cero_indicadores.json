@@ -1,0 +1,74 @@
+[
+  {
+    "year": 2020,
+    "muertes_totales": 89,
+    "lesiones_graves": 234,
+    "meta_muertes": 85,
+    "meta_lesiones": 220,
+    "muertes_peaton": 34,
+    "muertes_ciclista": 12,
+    "muertes_motociclista": 28,
+    "muertes_auto": 15,
+    "progreso_meta": 0
+  },
+  {
+    "year": 2021,
+    "muertes_totales": 82,
+    "lesiones_graves": 218,
+    "meta_muertes": 80,
+    "meta_lesiones": 210,
+    "muertes_peaton": 31,
+    "muertes_ciclista": 10,
+    "muertes_motociclista": 25,
+    "muertes_auto": 16,
+    "progreso_meta": 8
+  },
+  {
+    "year": 2022,
+    "muertes_totales": 75,
+    "lesiones_graves": 195,
+    "meta_muertes": 70,
+    "meta_lesiones": 190,
+    "muertes_peaton": 28,
+    "muertes_ciclista": 9,
+    "muertes_motociclista": 23,
+    "muertes_auto": 15,
+    "progreso_meta": 16
+  },
+  {
+    "year": 2023,
+    "muertes_totales": 68,
+    "lesiones_graves": 176,
+    "meta_muertes": 60,
+    "meta_lesiones": 170,
+    "muertes_peaton": 25,
+    "muertes_ciclista": 7,
+    "muertes_motociclista": 21,
+    "muertes_auto": 15,
+    "progreso_meta": 24
+  },
+  {
+    "year": 2024,
+    "muertes_totales": 62,
+    "lesiones_graves": 158,
+    "meta_muertes": 50,
+    "meta_lesiones": 150,
+    "muertes_peaton": 22,
+    "muertes_ciclista": 6,
+    "muertes_motociclista": 19,
+    "muertes_auto": 15,
+    "progreso_meta": 30
+  },
+  {
+    "year": 2025,
+    "muertes_totales": 55,
+    "lesiones_graves": 142,
+    "meta_muertes": 40,
+    "meta_lesiones": 130,
+    "muertes_peaton": 19,
+    "muertes_ciclista": 5,
+    "muertes_motociclista": 17,
+    "muertes_auto": 14,
+    "progreso_meta": 38
+  }
+]

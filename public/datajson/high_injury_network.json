@@ -1,0 +1,82 @@
+[
+  {
+    "id": "hin_1",
+    "nombre": "Corredor Luis Encinas Sur",
+    "coordenadas": [
+      [29.0892, -110.9613],
+      [29.0854, -110.9598],
+      [29.0812, -110.9584],
+      [29.0768, -110.9570]
+    ],
+    "siniestros_graves_5y": 45,
+    "muertes_5y": 12,
+    "lesiones_graves_5y": 67,
+    "nivel_riesgo": "muy_alto",
+    "longitud_km": 3.2,
+    "modo_predominante": "auto"
+  },
+  {
+    "id": "hin_2",
+    "nombre": "Periférico Oriente",
+    "coordenadas": [
+      [29.0987, -110.9234],
+      [29.1034, -110.9198],
+      [29.1089, -110.9156],
+      [29.1145, -110.9112]
+    ],
+    "siniestros_graves_5y": 58,
+    "muertes_5y": 18,
+    "lesiones_graves_5y": 89,
+    "nivel_riesgo": "muy_alto",
+    "longitud_km": 4.8,
+    "modo_predominante": "motociclista"
+  },
+  {
+    "id": "hin_3",
+    "nombre": "Blvd. Solidaridad",
+    "coordenadas": [
+      [29.1234, -111.0234],
+      [29.1198, -111.0189],
+      [29.1156, -111.0145],
+      [29.1112, -111.0098]
+    ],
+    "siniestros_graves_5y": 38,
+    "muertes_5y": 9,
+    "lesiones_graves_5y": 54,
+    "nivel_riesgo": "alto",
+    "longitud_km": 3.9,
+    "modo_predominante": "ciclista"
+  },
+  {
+    "id": "hin_4",
+    "nombre": "Av. Universidad",
+    "coordenadas": [
+      [29.0789, -110.9543],
+      [29.0834, -110.9512],
+      [29.0879, -110.9478],
+      [29.0923, -110.9445]
+    ],
+    "siniestros_graves_5y": 31,
+    "muertes_5y": 7,
+    "lesiones_graves_5y": 42,
+    "nivel_riesgo": "alto",
+    "longitud_km": 2.8,
+    "modo_predominante": "peaton"
+  },
+  {
+    "id": "hin_5",
+    "nombre": "Blvd. Navarrete",
+    "coordenadas": [
+      [29.0567, -110.9876],
+      [29.0612, -110.9845],
+      [29.0658, -110.9812],
+      [29.0703, -110.9778]
+    ],
+    "siniestros_graves_5y": 27,
+    "muertes_5y": 5,
+    "lesiones_graves_5y": 38,
+    "nivel_riesgo": "medio",
+    "longitud_km": 3.5,
+    "modo_predominante": "auto"
+  }
+]

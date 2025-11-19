@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { 
   AlertCircle, 
   MapPin, 
@@ -21,13 +23,15 @@ import {
   Newspaper,
   Camera,
   Shield,
-  Cloud
+  Cloud,
+  Navigation
 } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import { format } from "date-fns";
 import "leaflet/dist/leaflet.css";
 import "./map-styles.css";
 import L from "leaflet";
+import OSMLayerControl from "./OSMLayerControl";
 
 // Fix for default marker icons in React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -136,7 +140,23 @@ function MapCenter({ center }: MapCenterProps) {
   return null;
 }
 
-const AccidentsMap = () => {
+interface HighInjuryNetwork {
+  id: string;
+  nombre: string;
+  coordenadas: [number, number][];
+  siniestros_graves_5y: number;
+  muertes_5y: number;
+  lesiones_graves_5y: number;
+  nivel_riesgo: string;
+  longitud_km: number;
+  modo_predominante: string;
+}
+
+interface AccidentsMapProps {
+  onStatsUpdate?: (stats: any) => void;
+}
+
+const AccidentsMap = ({ onStatsUpdate }: AccidentsMapProps) => {
   const [accidents, setAccidents] = useState<AccidentData[]>([]);
   const [selectedAccident, setSelectedAccident] = useState<AccidentData | null>(null);
   const [filterColonia, setFilterColonia] = useState<string>("all");
@@ -144,6 +164,8 @@ const AccidentsMap = () => {
   const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
   const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
   const [mapCenter, setMapCenter] = useState<[number, number]>([29.0729, -110.9559]); // Hermosillo center
+  const [showHIN, setShowHIN] = useState<boolean>(false);
+  const [hinData, setHinData] = useState<HighInjuryNetwork[]>([]);
 
   // Helper function to clean date strings
   const cleanDateString = (dateStr: string): string => {
@@ -165,6 +187,18 @@ const AccidentsMap = () => {
       return dateStr;
     }
   };
+
+  useEffect(() => {
+    // Load High Injury Network data
+    fetch("/datajson/high_injury_network.json")
+      .then(res => res.json())
+      .then(data => {
+        setHinData(data);
+      })
+      .catch(err => {
+        console.error("Error cargando High Injury Network:", err);
+      });
+  }, []);
 
   useEffect(() => {
     // Load all accident data from JSON files in datajson folder
@@ -302,7 +336,7 @@ const AccidentsMap = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-primary" />
-              <CardTitle>Filtros</CardTitle>
+              <CardTitle>Filtros y Capas</CardTitle>
             </div>
             <Button variant="ghost" size="sm" onClick={clearFilters}>
               <X className="w-4 h-4 mr-2" />
@@ -310,11 +344,32 @@ const AccidentsMap = () => {
             </Button>
           </div>
           <CardDescription>
-            Filtra los accidentes por colonia, gravedad o fecha
+            Filtra los accidentes y visualiza corredores críticos
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-4 gap-4">
+          <div className="space-y-4">
+            {/* High Injury Network Toggle */}
+            <div className="flex items-center justify-between p-3 bg-red-50 border border-red-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <Navigation className="w-5 h-5 text-red-600" />
+                <div>
+                  <Label htmlFor="show-hin" className="font-semibold text-red-900">
+                    High Injury Network (HIN)
+                  </Label>
+                  <p className="text-xs text-red-700">
+                    Corredores con alta concentración de siniestros graves
+                  </p>
+                </div>
+              </div>
+              <Switch
+                id="show-hin"
+                checked={showHIN}
+                onCheckedChange={setShowHIN}
+              />
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-4">
             <div>
               <label className="text-sm font-medium mb-2 block">Colonia</label>
               <Select value={filterColonia} onValueChange={setFilterColonia}>
@@ -386,6 +441,7 @@ const AccidentsMap = () => {
                 </PopoverContent>
               </Popover>
             </div>
+          </div>
           </div>
         </CardContent>
       </Card>
@@ -491,6 +547,70 @@ const AccidentsMap = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
                   <MapCenter center={mapCenter} />
+                  
+                  {/* OSM Infrastructure Layers */}
+                  <OSMLayerControl onStatsUpdate={onStatsUpdate} />
+                  
+                  {/* High Injury Network Polylines */}
+                  {showHIN && hinData.map((corridor) => {
+                    const colorMap: Record<string, string> = {
+                      'muy_alto': '#dc2626',
+                      'alto': '#f59e0b',
+                      'medio': '#eab308'
+                    };
+                    const color = colorMap[corridor.nivel_riesgo] || '#6b7280';
+                    
+                    return (
+                      <Polyline
+                        key={corridor.id}
+                        positions={corridor.coordenadas}
+                        color={color}
+                        weight={6}
+                        opacity={0.7}
+                      >
+                        <Popup>
+                          <div className="p-2 min-w-[250px]">
+                            <h3 className="font-bold mb-2 text-base">{corridor.nombre}</h3>
+                            <div className="space-y-1 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Nivel de riesgo:</span>
+                                <Badge 
+                                  style={{ 
+                                    backgroundColor: color + '20', 
+                                    color: color,
+                                    border: `1px solid ${color}`
+                                  }}
+                                >
+                                  {corridor.nivel_riesgo.replace('_', ' ')}
+                                </Badge>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Muertes (5 años):</span>
+                                <span className="font-semibold text-red-600">{corridor.muertes_5y}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Lesiones graves:</span>
+                                <span className="font-semibold">{corridor.lesiones_graves_5y}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Total siniestros:</span>
+                                <span className="font-semibold">{corridor.siniestros_graves_5y}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Longitud:</span>
+                                <span>{corridor.longitud_km} km</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-muted-foreground">Modo predominante:</span>
+                                <span className="capitalize">{corridor.modo_predominante}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </Popup>
+                      </Polyline>
+                    );
+                  })}
+
                   {filteredAccidents.map((accident) => (
                     <Marker
                       key={accident.id_evento}
@@ -500,34 +620,30 @@ const AccidentsMap = () => {
                         click: () => handleMarkerClick(accident),
                       }}
                     >
-                      <Popup>
-                        <div className="p-2 min-w-[200px]">
-                          <h3 className="font-bold mb-1 capitalize text-base">
+                      <Popup maxWidth={260} closeButton={true} className="compact-popup">
+                                                <div className="p-1.5 min-w-[180px]">
+                          <h3 className="font-bold mb-0.5 capitalize text-sm">
                             {accident.tipo_accidente.replace(/_/g, " ")}
                           </h3>
-                          <p className="text-sm text-muted-foreground mb-2">
+                          <p className="text-xs text-muted-foreground mb-1.5">
                             {accident.ubicacion.colonia}
                           </p>
-                          <div className="flex items-center justify-between mb-2">
-                            <Badge variant={getSeverityBadgeVariant(accident.clasificacion_evento.nivel_gravedad)}>
+                          <div className="flex items-center justify-between mb-1.5">
+                            <Badge variant={getSeverityBadgeVariant(accident.clasificacion_evento.nivel_gravedad)} className="text-[10px] px-1.5 py-0">
                               {accident.clasificacion_evento.nivel_gravedad}
                             </Badge>
-                            <span className="text-xs text-muted-foreground">
-                              Click para más detalles →
+                            <span className="text-[10px] text-muted-foreground">
+                              {formatDate(accident.fecha_accidente)}
                             </span>
                           </div>
-                          {accident.fuente_url && (
-                            <a
-                              href={accident.fuente_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1 text-xs text-primary hover:underline mt-2"
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              Ver noticia completa
-                            </a>
-                          )}
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="w-full text-[10px] h-6"
+                            onClick={() => handleMarkerClick(accident)}
+                          >
+                            Ver detalles →
+                          </Button>
                         </div>
                       </Popup>
                     </Marker>

@@ -1,0 +1,92 @@
+[
+  {
+    "articulo_id": "art_70",
+    "articulo": "Artículo 70",
+    "descripcion": "Conducir bajo influencia de alcohol o drogas",
+    "multa_base": 2500,
+    "puntos_licencia": 8,
+    "gravedad": "muy_alta",
+    "suspension_dias": 30
+  },
+  {
+    "articulo_id": "art_45",
+    "articulo": "Artículo 45",
+    "descripcion": "Exceso de velocidad en zona urbana",
+    "multa_base": 1200,
+    "puntos_licencia": 6,
+    "gravedad": "alta",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_48",
+    "articulo": "Artículo 48",
+    "descripcion": "No respetar señal de alto o semáforo en rojo",
+    "multa_base": 1500,
+    "puntos_licencia": 7,
+    "gravedad": "muy_alta",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_112",
+    "articulo": "Artículo 112",
+    "descripcion": "Uso de teléfono celular al conducir",
+    "multa_base": 800,
+    "puntos_licencia": 4,
+    "gravedad": "media",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_58",
+    "articulo": "Artículo 58",
+    "descripcion": "No usar cinturón de seguridad",
+    "multa_base": 600,
+    "puntos_licencia": 3,
+    "gravedad": "media",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_92",
+    "articulo": "Artículo 92",
+    "descripcion": "No ceder el paso a peatones en paso peatonal",
+    "multa_base": 1000,
+    "puntos_licencia": 5,
+    "gravedad": "alta",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_103",
+    "articulo": "Artículo 103",
+    "descripcion": "Transportar menores sin sistema de retención infantil",
+    "multa_base": 1100,
+    "puntos_licencia": 6,
+    "gravedad": "alta",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_134",
+    "articulo": "Artículo 134",
+    "descripcion": "Circular en ciclovía sin ser vehículo no motorizado",
+    "multa_base": 700,
+    "puntos_licencia": 4,
+    "gravedad": "media",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_89",
+    "articulo": "Artículo 89",
+    "descripcion": "No mantener distancia de seguimiento segura",
+    "multa_base": 900,
+    "puntos_licencia": 4,
+    "gravedad": "media",
+    "suspension_dias": 0
+  },
+  {
+    "articulo_id": "art_125",
+    "articulo": "Artículo 125",
+    "descripcion": "Estacionarse en lugar prohibido o para discapacitados",
+    "multa_base": 400,
+    "puntos_licencia": 2,
+    "gravedad": "baja",
+    "suspension_dias": 0
+  }
+]

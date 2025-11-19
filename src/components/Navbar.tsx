@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LoginButton } from "@/components/LoginButton";
 import logoSrc from "@/assets/logo_hmobility.png";
 
 interface NavbarProps {
@@ -53,16 +54,17 @@ const Navbar = ({ onChatbotToggle }: NavbarProps) => {
             ))}
           </div>
 
-          {/* Chatbot Button con diseño premium */}
+          {/* Actions: Chatbot + Login */}
           <div className="hidden md:flex items-center gap-4">
             <Button
               onClick={onChatbotToggle}
-              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 px-6 py-2 rounded-xl relative overflow-hidden group"
+              variant="outline"
+              className="gap-2"
             >
-              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              <MessageCircle className="w-4 h-4 mr-2 relative z-10" />
-              <span className="relative z-10">Asistente</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Asistente</span>
             </Button>
+            <LoginButton />
           </div>
 
           {/* Mobile Menu Button */}

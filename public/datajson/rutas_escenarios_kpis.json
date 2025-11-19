@@ -1,0 +1,73 @@
+{
+  "actual": {
+    "nombre": "Escenario Actual",
+    "descripcion": "Red de transporte actual de Hermosillo",
+    "kpis": {
+      "tiempo_promedio_viaje": "45 min",
+      "velocidad_promedio": "22 km/h",
+      "cobertura_transporte": "68%",
+      "nivel_congestion": "Alto",
+      "emisiones_co2_ton_año": "18,500",
+      "accidentes_año": "842",
+      "satisfaccion_usuarios": "62%"
+    },
+    "metricas": {
+      "rutas_totales": 5,
+      "vehiculos_operando": 8,
+      "km_recorridos_dia": "2,450"
+    }
+  },
+  "optimo": {
+    "nombre": "Escenario Optimizado",
+    "descripcion": "Rutas optimizadas con IA para reducir tiempos y congestión",
+    "kpis": {
+      "tiempo_promedio_viaje": "32 min",
+      "velocidad_promedio": "31 km/h",
+      "cobertura_transporte": "85%",
+      "nivel_congestion": "Moderado",
+      "emisiones_co2_ton_año": "13,200",
+      "accidentes_año": "595",
+      "satisfaccion_usuarios": "81%"
+    },
+    "metricas": {
+      "rutas_totales": 6,
+      "vehiculos_operando": 8,
+      "km_recorridos_dia": "2,180"
+    },
+    "mejoras_vs_actual": {
+      "tiempo_ahorro": "-29%",
+      "velocidad_incremento": "+41%",
+      "cobertura_incremento": "+25%",
+      "congestion_reduccion": "-35%",
+      "emisiones_reduccion": "-29%",
+      "accidentes_reduccion": "-29%",
+      "satisfaccion_incremento": "+31%"
+    }
+  },
+  "eventos": {
+    "nombre": "Eventos Especiales",
+    "descripcion": "Rutas ajustadas para eventos masivos (estadio, feria, conciertos)",
+    "kpis": {
+      "tiempo_promedio_viaje": "52 min",
+      "velocidad_promedio": "18 km/h",
+      "cobertura_transporte": "72%",
+      "nivel_congestion": "Muy Alto",
+      "emisiones_co2_ton_año": "21,300",
+      "accidentes_año": "985",
+      "satisfaccion_usuarios": "55%"
+    },
+    "metricas": {
+      "rutas_totales": 5,
+      "vehiculos_operando": 10,
+      "km_recorridos_dia": "2,850",
+      "desvios_activos": 3,
+      "capacidad_extra": "+25%"
+    },
+    "eventos_gestionados": [
+      "Partido en Estadio Sonora (capacidad 15,000)",
+      "Feria de Hermosillo (100,000 visitantes/día)",
+      "Concierto Plaza Zaragoza (8,000 personas)",
+      "Medio Maratón (3,500 corredores)"
+    ]
+  }
+}

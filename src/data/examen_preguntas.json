@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "pregunta": "¿Cuál es el límite de alcohol permitido para conducir en Sonora?",
+    "opciones": ["0.00 g/L", "0.25 g/L", "0.40 g/L", "0.80 g/L"],
+    "respuesta_correcta": 0,
+    "articulo_id": "art_70",
+    "tema": "alcohol",
+    "explicacion": "En Sonora está prohibido conducir con cualquier cantidad de alcohol en la sangre (tolerancia cero)"
+  },
+  {
+    "id": 2,
+    "pregunta": "¿Cuál es la velocidad máxima en zona escolar?",
+    "opciones": ["20 km/h", "30 km/h", "40 km/h", "50 km/h"],
+    "respuesta_correcta": 0,
+    "articulo_id": "art_45",
+    "tema": "velocidad",
+    "explicacion": "La velocidad máxima en zona escolar es de 20 km/h durante horas de entrada y salida"
+  },
+  {
+    "id": 3,
+    "pregunta": "¿Está permitido usar teléfono celular mientras se conduce?",
+    "opciones": ["Sí, si es manos libres", "Sí, solo para emergencias", "No, nunca", "Sí, en semáforos"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_112",
+    "tema": "celular",
+    "explicacion": "Está prohibido usar celular al conducir, incluso con manos libres, excepto sistemas integrados del vehículo"
+  },
+  {
+    "id": 4,
+    "pregunta": "¿Quiénes deben usar cinturón de seguridad?",
+    "opciones": ["Solo el conductor", "Conductor y copiloto", "Todos los ocupantes", "Solo en carretera"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_58",
+    "tema": "cinturon",
+    "explicacion": "Todos los ocupantes del vehículo deben usar cinturón de seguridad en todo momento"
+  },
+  {
+    "id": 5,
+    "pregunta": "¿Qué debe hacer al ver un paso peatonal con personas esperando cruzar?",
+    "opciones": ["Acelerar para pasar rápido", "Tocar el claxon", "Detenerse y ceder el paso", "Reducir velocidad"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_92",
+    "tema": "peaton",
+    "explicacion": "Siempre debe detenerse completamente y ceder el paso a peatones en pasos peatonales"
+  },
+  {
+    "id": 6,
+    "pregunta": "¿Los vehículos motorizados pueden circular por ciclovías?",
+    "opciones": ["Sí, si no hay ciclistas", "Sí, en emergencias", "No, nunca", "Sí, a baja velocidad"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_134",
+    "tema": "ciclovia",
+    "explicacion": "Las ciclovías son exclusivas para bicicletas y vehículos no motorizados"
+  },
+  {
+    "id": 7,
+    "pregunta": "¿Qué debe hacer al llegar a un semáforo en amarillo?",
+    "opciones": ["Acelerar para pasar", "Detenerse si es seguro hacerlo", "Siempre pasar", "Tocar el claxon"],
+    "respuesta_correcta": 1,
+    "articulo_id": "art_48",
+    "tema": "semaforo",
+    "explicacion": "Al ver luz amarilla debe detenerse si puede hacerlo de forma segura, no acelerar"
+  },
+  {
+    "id": 8,
+    "pregunta": "¿Hasta qué edad los menores deben usar sistema de retención infantil?",
+    "opciones": ["4 años", "8 años", "12 años", "Hasta 1.45m de estatura"],
+    "respuesta_correcta": 3,
+    "articulo_id": "art_103",
+    "tema": "menores",
+    "explicacion": "Los menores de 12 años o menos de 1.45m deben usar sistema de retención apropiado"
+  },
+  {
+    "id": 9,
+    "pregunta": "¿Qué distancia mínima debe mantener con el vehículo de adelante?",
+    "opciones": ["1 metro", "2 segundos", "3 segundos", "5 metros"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_89",
+    "tema": "distancia",
+    "explicacion": "Debe mantener al menos 3 segundos de distancia con el vehículo de adelante"
+  },
+  {
+    "id": 10,
+    "pregunta": "¿Puede estacionarse en un cajón para personas con discapacidad sin tener el permiso?",
+    "opciones": ["Sí, si es rápido", "Sí, en emergencias", "No, nunca", "Sí, si no hay otros cajones"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_125",
+    "tema": "estacionamiento",
+    "explicacion": "Los cajones para personas con discapacidad son exclusivos y requieren tarjetón oficial"
+  },
+  {
+    "id": 11,
+    "pregunta": "¿Cuántos puntos se pierden por conducir bajo influencia del alcohol?",
+    "opciones": ["4 puntos", "6 puntos", "8 puntos", "10 puntos"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_70",
+    "tema": "alcohol",
+    "explicacion": "Conducir bajo influencia del alcohol resulta en pérdida de 8 puntos de la licencia"
+  },
+  {
+    "id": 12,
+    "pregunta": "¿Cuál es la velocidad máxima en zona residencial?",
+    "opciones": ["30 km/h", "40 km/h", "50 km/h", "60 km/h"],
+    "respuesta_correcta": 1,
+    "articulo_id": "art_45",
+    "tema": "velocidad",
+    "explicacion": "En zonas residenciales la velocidad máxima es de 40 km/h"
+  },
+  {
+    "id": 13,
+    "pregunta": "Si cruza un semáforo en rojo, ¿cuántos puntos pierde?",
+    "opciones": ["3 puntos", "5 puntos", "7 puntos", "10 puntos"],
+    "respuesta_correcta": 2,
+    "articulo_id": "art_48",
+    "tema": "semaforo",
+    "explicacion": "Cruzar un semáforo en rojo resulta en pérdida de 7 puntos de la licencia"
+  },
+  {
+    "id": 14,
+    "pregunta": "¿Los ciclistas deben circular por la ciclovía si está disponible?",
+    "opciones": ["No, es opcional", "Sí, siempre que exista", "Solo de noche", "Solo si hay mucho tráfico"],
+    "respuesta_correcta": 1,
+    "articulo_id": "art_134",
+    "tema": "ciclovia",
+    "explicacion": "Los ciclistas tienen obligación de usar la ciclovía cuando está disponible"
+  },
+  {
+    "id": 15,
+    "pregunta": "¿Qué debe hacer al ver un autobús escolar detenido con luces intermitentes?",
+    "opciones": ["Rebasar con cuidado", "Detenerse completamente", "Reducir velocidad", "Tocar el claxon"],
+    "respuesta_correcta": 1,
+    "articulo_id": "art_92",
+    "tema": "peaton",
+    "explicacion": "Debe detenerse completamente cuando un autobús escolar tiene luces intermitentes activadas"
+  }
+]
