@@ -7,6 +7,77 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [3.7.0] - 2025-11-24
+
+### 🚀 Animaciones Dinámicas en Tiempo Real
+
+#### Added
+- **RealTimeAnimationMiniMap.tsx** - Mapa con vehículos animados
+  - 3 vehículos simultáneos (Patrulla, Ambulancia, Bomberos)
+  - Animación a 60 FPS con `requestAnimationFrame`
+  - Trails de movimiento (últimas 15 posiciones)
+  - Efecto glow con `animate-ping` y `animate-pulse`
+  - Área de influencia de 150m por vehículo
+  - Estados dinámicos: idle, active, responding
+  - Velocidades realistas: 45-65 km/h según tipo
+  - Cálculo preciso con fórmula Haversine
+  - Panel de estado con progress bars animados
+  - Controles Play/Pause/Reset
+
+- **EmergencyVehicleSimulation.tsx** - Simulación completa con Canvas 2D
+  - Canvas 800x500px con renderizado de alta performance
+  - Sistema de despacho automático inteligente
+  - Generación aleatoria de eventos cada 5s
+  - 4 tipos de emergencias: Accidentes, Incendios, Médicas, Crimen
+  - Sirenas animadas (parpadeo rojo/blanco)
+  - Efecto pulso en eventos pendientes
+  - Flechas de dirección rotadas según movimiento
+  - Estadísticas en vivo: Disponibles, En Camino, Pendientes, Resueltos
+  - Historial de últimos 5 eventos
+  - Estados: pending → responding → resolved
+  - Animación a 60 FPS
+
+- **RealTimeOpsModule.tsx** - Integración con tabs
+  - Sistema de pestañas con 3 vistas
+  - Tab 1: Vista General (original)
+  - Tab 2: 🚗 Mapa Animado
+  - Tab 3: 🚨 Simulación Emergencias
+  - Refactorización con `renderOverviewContent()`
+  - Imports de nuevos componentes
+
+#### Enhanced
+- **Matemáticas Geográficas**
+  - Fórmula Haversine para distancias precisas
+  - Interpolación lineal para posiciones exactas
+  - Cálculo de ángulo de dirección con `Math.atan2`
+  - Conversión lat/lng a coordenadas Canvas
+
+- **Animaciones CSS/JS**
+  - `animate-pulse`: Indicadores de vehículos
+  - `animate-ping`: Efecto glow exterior
+  - `transition-all duration-300`: Movimientos suaves
+  - `transition-all duration-500`: Progress bars
+  - RequestAnimationFrame: 60 FPS garantizados
+
+#### Technical
+- Canvas 2D API para renderizado eficiente
+- useRef para evitar re-renders
+- deltaTime para animación frame-independent
+- Trail system con array slice(-15)
+- Automatic vehicle dispatch algorithm
+- Event queue management
+- Status badge system
+
+#### Documentation
+- Nuevo archivo `docs/ANIMACIONES_DINAMICAS.md`
+  - Guía completa de componentes
+  - Explicación de algoritmos
+  - Métricas de performance
+  - Ejemplos de uso
+  - Notas técnicas
+
+---
+
 ## [3.6.0] - 2025-11-24
 
 ### 📱 Progressive Web App (Sprint 3)

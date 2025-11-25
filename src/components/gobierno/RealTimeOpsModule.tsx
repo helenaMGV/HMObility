@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   AlertCircle,
   Clock,
@@ -18,6 +19,9 @@ import {
   Users,
   Activity
 } from 'lucide-react';
+import RealTimeAnimationMiniMap from './RealTimeAnimationMiniMap';
+import EmergencyVehicleSimulation from './EmergencyVehicleSimulation';
+import UberStyleRouteSimulation from './UberStyleRouteSimulation';
 
 interface Incidente {
   id: string;
@@ -187,8 +191,8 @@ export default function RealTimeOpsModule() {
     shadowSize: [41, 41],
   });
 
-  return (
-    <div className="space-y-6">
+  const renderOverviewContent = () => (
+    <>
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
@@ -478,6 +482,48 @@ export default function RealTimeOpsModule() {
           </CardContent>
         </Card>
       )}
+    </>
+  );
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+            <Radio className="w-6 h-6" />
+            Centro de Comando en Tiempo Real
+          </h2>
+          <p className="text-gray-600 mt-1">
+            Gestión de incidentes, despacho de servicios y monitoreo 24/7 con animaciones en vivo
+          </p>
+        </div>
+      </div>
+
+      {/* Tabs para diferentes vistas */}
+      <Tabs defaultValue="uber" className="w-full">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="uber">🚙 Simulación Uber</TabsTrigger>
+          <TabsTrigger value="overview">Vista General</TabsTrigger>
+          <TabsTrigger value="animation">🚗 Mapa Animado</TabsTrigger>
+          <TabsTrigger value="simulation">🚨 Emergencias</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="uber" className="mt-4">
+          <UberStyleRouteSimulation />
+        </TabsContent>
+
+        <TabsContent value="overview" className="space-y-4 mt-4">
+          {renderOverviewContent()}
+        </TabsContent>
+
+        <TabsContent value="animation" className="mt-4">
+          <RealTimeAnimationMiniMap />
+        </TabsContent>
+
+        <TabsContent value="simulation" className="mt-4">
+          <EmergencyVehicleSimulation />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

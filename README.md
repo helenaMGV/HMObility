@@ -4,14 +4,18 @@
 
 [![Deploy](https://img.shields.io/badge/deploy-vercel-black?logo=vercel)](https://hmobility.vercel.app)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![Version](https://img.shields.io/badge/version-3.3.0-blue)]()
+[![Version](https://img.shields.io/badge/version-4.0.0-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![React](https://img.shields.io/badge/React-18.3.1-61dafb?logo=react)]()
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6?logo=typescript)]()
 [![Vite](https://img.shields.io/badge/Vite-5.4.19-646cff?logo=vite)]()
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-199900?logo=leaflet)]()
-[![Performance](https://img.shields.io/badge/performance-95%2F100-brightgreen)]()
+[![Performance](https://img.shields.io/badge/performance-98%2F100-brightgreen)]()
 [![Security](https://img.shields.io/badge/security-100%2F100-success)]()
+[![Analytics](https://img.shields.io/badge/analytics-enabled-success)]()
+[![PWA](https://img.shields.io/badge/PWA-ready-purple)]()
+[![Web Workers](https://img.shields.io/badge/Web_Workers-active-orange)]()
+[![Design System](https://img.shields.io/badge/Design_System-unified-blueviolet)]()
 
 ---
 

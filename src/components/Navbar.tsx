@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,17 @@ interface NavbarProps {
 
 const Navbar = ({ onChatbotToggle }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { label: "Inicio", path: "/" },
@@ -23,7 +33,11 @@ const Navbar = ({ onChatbotToggle }: NavbarProps) => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/98 backdrop-blur-xl border-b-2 border-primary/10 shadow-lg">
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-background/100 backdrop-blur-xl border-b-2 border-primary/20 shadow-xl' 
+        : 'bg-background/95 backdrop-blur-lg border-b-2 border-primary/10 shadow-lg'
+    }`}>
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo con efecto hover mejorado */}

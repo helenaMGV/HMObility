@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { MapContainer, TileLayer, Polyline, Marker, Popup } from 'react-leaflet';
+import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Select,
   SelectContent,
@@ -20,6 +21,7 @@ import {
   CheckCircle2,
   AlertCircle,
   BarChart3,
+  Loader2,
 } from 'lucide-react';
 import {
   BarChart,
@@ -33,6 +35,7 @@ import {
   Line,
   Legend,
 } from 'recharts';
+import { useOSMRoutes, type OSMRoute } from '@/hooks/useOSMRoutes';
 
 interface Parada {
   id: string;
@@ -54,114 +57,106 @@ interface Ruta {
   estado: 'operativa' | 'retraso' | 'incidencia';
   horario: string;
   tarifa: number;
+  longitud_km?: number; // Opcional para rutas OSM
+}
+
+// Componente para ajustar bounds del mapa cuando cambia la ruta
+function MapBoundsUpdater({ coords }: { coords: [number, number][] }) {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (coords.length > 0) {
+      const bounds = coords.map(c => [c[0], c[1]] as [number, number]);
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [coords, map]);
+  
+  return null;
 }
 
 export default function TransitView() {
-  const [rutaSeleccionada, setRutaSeleccionada] = useState<string>('R1');
+  const [rutaSeleccionada, setRutaSeleccionada] = useState<string>('');
+  const { routes: osmRoutes, loading: loadingOSM } = useOSMRoutes({ numRoutes: 4 });
+  const [rutas, setRutas] = useState<Ruta[]>([]);
 
-  const rutas: Ruta[] = [
-    {
-      id: 'R1',
-      numero: '1',
-      nombre: 'Centro - Villa de Seris',
-      coordenadas: [
-        { lat: 29.0729, lon: -110.9559 },
-        { lat: 29.0800, lon: -110.9600 },
-        { lat: 29.0890, lon: -110.9550 },
-        { lat: 29.0950, lon: -110.9480 },
-        { lat: 29.1020, lon: -110.9420 },
-      ],
-      paradas: [
-        { id: 'P1', nombre: 'Centro', coordenadas: { lat: 29.0729, lon: -110.9559 }, pasajeros_promedio: 850 },
-        { id: 'P2', nombre: 'Prol. Colosio', coordenadas: { lat: 29.0890, lon: -110.9550 }, pasajeros_promedio: 620 },
-        { id: 'P3', nombre: 'Villa de Seris', coordenadas: { lat: 29.1020, lon: -110.9420 }, pasajeros_promedio: 480 },
-      ],
-      frecuencia_minutos: 15,
-      capacidad_buses: 45,
-      pasajeros_promedio_dia: 8500,
-      puntualidad: 87,
-      estado: 'operativa',
-      horario: '05:00 - 23:00',
-      tarifa: 9.50,
-    },
-    {
-      id: 'R2',
-      numero: '2',
-      nombre: 'San Benito - Zona Industrial',
-      coordenadas: [
-        { lat: 29.0650, lon: -110.9800 },
-        { lat: 29.0700, lon: -110.9700 },
-        { lat: 29.0750, lon: -110.9600 },
-        { lat: 29.0800, lon: -110.9500 },
-        { lat: 29.0850, lon: -110.9400 },
-      ],
-      paradas: [
-        { id: 'P4', nombre: 'San Benito', coordenadas: { lat: 29.0650, lon: -110.9800 }, pasajeros_promedio: 720 },
-        { id: 'P5', nombre: 'Blvd. Solidaridad', coordenadas: { lat: 29.0750, lon: -110.9600 }, pasajeros_promedio: 560 },
-        { id: 'P6', nombre: 'Zona Industrial', coordenadas: { lat: 29.0850, lon: -110.9400 }, pasajeros_promedio: 910 },
-      ],
-      frecuencia_minutos: 12,
-      capacidad_buses: 50,
-      pasajeros_promedio_dia: 9200,
-      puntualidad: 92,
-      estado: 'operativa',
-      horario: '05:30 - 22:30',
-      tarifa: 9.50,
-    },
-    {
-      id: 'R3',
-      numero: '3',
-      nombre: 'Peri Norte - Peri Sur',
-      coordenadas: [
-        { lat: 29.1200, lon: -110.9600 },
-        { lat: 29.1000, lon: -110.9550 },
-        { lat: 29.0800, lon: -110.9500 },
-        { lat: 29.0600, lon: -110.9450 },
-        { lat: 29.0400, lon: -110.9400 },
-      ],
-      paradas: [
-        { id: 'P7', nombre: 'Peri Norte', coordenadas: { lat: 29.1200, lon: -110.9600 }, pasajeros_promedio: 530 },
-        { id: 'P8', nombre: 'Centro Norte', coordenadas: { lat: 29.0800, lon: -110.9500 }, pasajeros_promedio: 670 },
-        { id: 'P9', nombre: 'Peri Sur', coordenadas: { lat: 29.0400, lon: -110.9400 }, pasajeros_promedio: 490 },
-      ],
-      frecuencia_minutos: 20,
-      capacidad_buses: 40,
-      pasajeros_promedio_dia: 6800,
-      puntualidad: 78,
-      estado: 'retraso',
-      horario: '06:00 - 22:00',
-      tarifa: 9.50,
-    },
-    {
-      id: 'R4',
-      numero: '4',
-      nombre: 'Universitario - Vado del Río',
-      coordenadas: [
-        { lat: 29.0950, lon: -111.0200 },
-        { lat: 29.0850, lon: -111.0000 },
-        { lat: 29.0750, lon: -110.9800 },
-        { lat: 29.0650, lon: -110.9600 },
-      ],
-      paradas: [
-        { id: 'P10', nombre: 'UNISON', coordenadas: { lat: 29.0950, lon: -111.0200 }, pasajeros_promedio: 1200 },
-        { id: 'P11', nombre: 'Blvd. Encinas', coordenadas: { lat: 29.0750, lon: -110.9800 }, pasajeros_promedio: 780 },
-        { id: 'P12', nombre: 'Vado del Río', coordenadas: { lat: 29.0650, lon: -110.9600 }, pasajeros_promedio: 640 },
-      ],
-      frecuencia_minutos: 10,
-      capacidad_buses: 55,
-      pasajeros_promedio_dia: 11500,
-      puntualidad: 94,
-      estado: 'operativa',
-      horario: '05:00 - 23:30',
-      tarifa: 9.50,
-    },
-  ];
+  // Convertir rutas OSM a formato Ruta
+  useEffect(() => {
+    if (osmRoutes.length > 0) {
+      const rutasConvertidas: Ruta[] = osmRoutes.map((osmRoute, idx) => {
+        // Generar paradas espaciadas a lo largo de la ruta
+        const numParadas = Math.min(Math.floor(osmRoute.coordenadas.length / 10), 5);
+        const paradas: Parada[] = [];
+        
+        for (let i = 0; i < numParadas; i++) {
+          const index = Math.floor((osmRoute.coordenadas.length / (numParadas + 1)) * (i + 1));
+          const coord = osmRoute.coordenadas[index];
+          
+          paradas.push({
+            id: `P${idx}_${i}`,
+            nombre: `Parada ${i + 1}`,
+            coordenadas: { lat: coord[0], lon: coord[1] },
+            pasajeros_promedio: Math.floor(Math.random() * 600) + 400,
+          });
+        }
 
-  const ruta = rutas.find(r => r.id === rutaSeleccionada) || rutas[0];
+        return {
+          id: osmRoute.id,
+          numero: `${idx + 1}`,
+          nombre: osmRoute.nombre,
+          coordenadas: osmRoute.coordenadas.map(c => ({ lat: c[0], lon: c[1] })),
+          paradas,
+          frecuencia_minutos: [10, 15, 20, 25][idx % 4],
+          capacidad_buses: 45,
+          pasajeros_promedio_dia: Math.floor(Math.random() * 5000) + 5000,
+          puntualidad: Math.floor(Math.random() * 15) + 80,
+          estado: ['operativa', 'operativa', 'retraso', 'operativa'][idx % 4] as 'operativa' | 'retraso' | 'incidencia',
+          horario: '05:00 - 23:00',
+          tarifa: 9.50,
+          longitud_km: osmRoute.longitud_km,
+        };
+      });
+
+      setRutas(rutasConvertidas);
+      
+      // Seleccionar primera ruta por defecto
+      if (!rutaSeleccionada && rutasConvertidas.length > 0) {
+        setRutaSeleccionada(rutasConvertidas[0].id);
+      }
+    }
+  }, [osmRoutes, rutaSeleccionada]);
+
+  // Mostrar skeleton mientras carga
+  if (loadingOSM) {
+    return (
+      <div className="space-y-4 p-6">
+        <Skeleton className="h-8 w-48" />
+        <div className="grid md:grid-cols-2 gap-4">
+          <Skeleton className="h-64" />
+          <Skeleton className="h-64" />
+        </div>
+        <Skeleton className="h-96" />
+      </div>
+    );
+  }
+
+  if (rutas.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-center space-y-2">
+          <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto" />
+          <p className="text-muted-foreground">No se pudieron cargar las rutas OSM</p>
+        </div>
+      </div>
+    );
+  }
+
+  const rutaActual = rutas.find(r => r.id === rutaSeleccionada) || rutas[0];
 
   const totalPasajeros = rutas.reduce((acc, r) => acc + r.pasajeros_promedio_dia, 0);
-  const puntualidadPromedio = Math.round(rutas.reduce((acc, r) => acc + r.puntualidad, 0) / rutas.length);
+  const puntualidadPromedio = rutas.length > 0 ? Math.round(rutas.reduce((acc, r) => acc + r.puntualidad, 0) / rutas.length) : 0;
   const rutasOperativas = rutas.filter(r => r.estado === 'operativa').length;
+  
+  const ruta = rutaActual; // Alias para compatibilidad
 
   const dataEspera = [
     { hora: '06:00', minutos: 18 },
@@ -292,6 +287,9 @@ export default function TransitView() {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+                
+                {/* Ajustar mapa a ruta OSM */}
+                <MapBoundsUpdater coords={ruta.coordenadas.map(c => [c.lat, c.lon] as [number, number])} />
                 
                 {/* Ruta seleccionada */}
                 <Polyline

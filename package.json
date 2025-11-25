@@ -1,9 +1,9 @@
 {
   "name": "hmobility-safe-streets",
   "private": true,
-  "version": "3.6.0",
+  "version": "4.0.1",
   "type": "module",
-  "description": "Sistema Operativo de Movilidad Urbana de México - Plataforma GovTech integral con 842 accidentes georeferenciados, 1,402 elementos de infraestructura OSM, 16 módulos de IA, algoritmos Vision Zero y datos abiertos",
+  "description": "Sistema Operativo de Movilidad Urbana de México v4.0 - Plataforma GovTech con Sistema de Diseño Unificado, Web Workers, Analytics Integrado, Mega Menu, Onboarding y Centro de Ayuda. 842 accidentes, 1,402 elementos OSM, 16 módulos IA, Vision Zero",
   "author": "HMObility Team <contacto@hmobility.com>",
   "license": "MIT",
   "repository": {
