@@ -1,0 +1,66 @@
+{
+  "name": "HMObility Safe Streets - Sistema de Movilidad Urbana",
+  "short_name": "HMObility",
+  "description": "Plataforma GovTech integral con 842 accidentes georeferenciados, 16 módulos de IA, algoritmos Vision Zero y datos abiertos para ciudades inteligentes y seguras",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#f38e0b",
+  "categories": ["government", "utilities", "navigation", "education"],
+  "lang": "es-MX",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mapa de Accidentes",
+      "short_name": "Mapa",
+      "description": "Ver mapa interactivo de accidentes",
+      "url": "/mapa",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Juegos Educativos",
+      "short_name": "Juegos",
+      "description": "Aprende seguridad vial jugando",
+      "url": "/juego",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Dashboard Gobierno",
+      "short_name": "Dashboard",
+      "description": "Panel de control Vision Zero",
+      "url": "/gobierno",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

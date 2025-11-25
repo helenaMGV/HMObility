@@ -8,9 +8,10 @@ import { Loader2 } from "lucide-react";
 import ErrorBoundary from "@/lib/errorBoundary";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { logger } from "@/lib/logger";
+import { InstallPWA } from "@/components/InstallPWA";
 
 // Log app initialization
-logger.info('HMObility Safe Streets v3.5.0 initialized', {
+logger.info('HMObility Safe Streets v3.6.0 initialized', {
   environment: import.meta.env.MODE,
   timestamp: new Date().toISOString(),
 });
@@ -59,6 +60,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <InstallPWA />
           <BrowserRouter>
             <Suspense fallback={<LoadingFallback />}>
               <Routes>

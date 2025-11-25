@@ -7,6 +7,54 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [3.6.0] - 2025-11-24
+
+### 📱 Progressive Web App (Sprint 3)
+
+#### Added
+- **PWA Completa Installable**
+  - Manifest.json con metadata, shortcuts y categorías
+  - Service Worker con estrategias de caché Workbox
+  - Iconos PWA (192x192, 512x512) generados
+  - Componente `InstallPWA.tsx` con prompt elegante
+  - Registro automático de SW en `main.tsx`
+  - Meta tags para iOS y Android en `index.html`
+
+- **Estrategias de Caché Inteligente**
+  - **CacheFirst** para tiles OpenStreetMap (30 días)
+  - **StaleWhileRevalidate** para GeoJSON (7 días)
+  - **CacheFirst** para datos locales (7 días)
+  - **NetworkFirst** para API calls (5 min timeout)
+  - Precaching automático de assets estáticos
+  - Máximo 500 tiles OSM en caché
+
+- **Experiencia Offline**
+  - Mapas funcionan sin conexión
+  - Datos locales siempre disponibles
+  - Fallback elegante para API
+  - Auto-update con confirmación de usuario
+  - Notificación "offline-ready"
+
+- **UI de Instalación**
+  - Prompt no intrusivo (30s delay)
+  - Gradiente naranja/amarillo (brand colors)
+  - Beneficios claros mostrados
+  - Persistencia de preferencias
+  - Soporte iOS y Android
+
+#### Changed
+- Theme color actualizado a `#f38e0b` (naranja HMObility)
+- Dependencias: añadidas `vite-plugin-pwa` y `workbox-window`
+- Build configuration: PWA plugin integrado en Vite
+
+#### Technical
+- Bundle size gzipped: ~410 KB total
+- Lighthouse PWA: ✅ Installable
+- Service Worker: v1.1.0
+- Offline-first architecture implementada
+
+---
+
 ## [3.5.0] - 2025
 
 ### 🎮 Juegos Educativos Interactivos (Sprint 2)
