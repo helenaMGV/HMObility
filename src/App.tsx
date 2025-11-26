@@ -37,6 +37,7 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const MapPage = lazy(() => import("./pages/MapPage"));
 const AnimatedMapPage = lazy(() => import("./pages/AnimatedMapPage"));
 const InfrastructurePage = lazy(() => import("./pages/InfrastructurePage"));
+const DashboardV2Page = lazy(() => import("./pages/DashboardV2Page"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient({
@@ -95,6 +96,7 @@ function AppContent() {
             <Route path="/mapa" element={<MapPage />} />
             <Route path="/mapa-animado" element={<AnimatedMapPage />} />
             <Route path="/infraestructura" element={<InfrastructurePage />} />
+            <Route path="/dashboard-v2" element={<DashboardV2Page />} />
             <Route path="/acerca-de" element={<AboutPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

@@ -62,6 +62,7 @@ export default function GobiernoDashboard() {
 
   const menuItems = [
     { id: 'overview', label: 'Vista General', icon: LayoutDashboard },
+    { id: 'dashboard-v2', label: 'Dashboard Personalizable', icon: LayoutGrid, badge: 'V2', isExternal: true, link: '/dashboard-v2' },
     { id: 'high-injury', label: 'High-Injury Network', icon: AlertTriangle, badge: 'Pro' },
     { id: 'flujos', label: 'Flujos de Movilidad', icon: TrendingUp },
     { id: 'inventario', label: 'Inventario Vial', icon: Map },
@@ -77,7 +78,7 @@ export default function GobiernoDashboard() {
     { id: 'emissions', label: 'Emisiones', icon: Cloud, badge: 'PRO' },
     { id: 'events', label: 'Simulación Eventos', icon: Calendar, badge: 'PRO' },
     { id: 'isochrones', label: 'Isócronas', icon: Clock, badge: 'PRO' },
-    { id: 'simulator', label: 'Simulador de Rutas', icon: Map, badge: 'NUEVO', isExternal: true },
+    { id: 'simulator', label: 'Simulador de Rutas', icon: Map, badge: 'NUEVO', isExternal: true, link: '/mapa-animado' },
   ];
 
   const stats = [
@@ -136,14 +137,12 @@ export default function GobiernoDashboard() {
               const Icon = item.icon;
               const isActive = activeModule === item.id;
               
-              // Si es un ítem externo (simulador), usar link
+              // Si es un ítem externo, usar link
               if (item.isExternal) {
                 return (
                   <a
                     key={item.id}
-                    href="/mapa-animado"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={item.link || '/mapa-animado'}
                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors hover:bg-muted text-muted-foreground hover:text-foreground`}
                   >
                     <Icon className="w-5 h-5 flex-shrink-0" />
